@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+body {
+  font-size: 14px;
+}
+.logo_image {
+  width: 7%;
+  height: 25px;
+  background-size: cover;
+  opacity: 1;
+  position: relative;
+  top: 0px;
+  left: 0px;
+  overflow: hidden;
+}
+
+.login_section {
+  width: 100%;
+  height: 1200px;
+  background: rgba(91,112,131,0.4000000059604645);
+  opacity: 1;
+  position: relative;
+  top: 0px;
+  left: 0px;
+  overflow: hidden;
+}
+.fisrt_div {
+  width: 600px;
+  height: 650px;
+  background: rgba(0,0,0,1);
+  opacity: 1;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  overflow: hidden;
+}
+.third_div {
+  width: 600px;
+  height: 597px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 53px;
+  left: 0px;
+  overflow: hidden;
+}
+.forth_div {
+  width: 364px;
+  height: 538px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 0px;
+  left: 118px;
+  overflow: hidden;
+}
+.title {
+  width: 170px;
+  color: rgba(231,233,234,1);
+  position: absolute;
+  top: 19px;
+  left: 32px;
+  font-family: Roboto;
+  font-weight: Bold;
+  font-size: 31px;
+  opacity: 1;
+  text-align: left;
+}
+.btn_google_apple {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 40px;
+  background: rgba(255,255,255,1);
+  opacity: 1;
+  position: absolute;
+  top: 88px;
+  left: 140px;
+  border-radius: 20px;
+  overflow: hidden;
+  font-size: 20px;
+}
+.btn_padding{
+  top: 152px;
+  font-weight: bold;
+}
+.or {
+  display: flex;
+  gap: 5px;
+  color: rgba(231,233,234,1);
+  position: absolute;
+  top: 13rem;
+  font-size: 1rem;
+  left: 9rem;
+}
+.hr{
+  width: 8.2rem;
+  border: rgba(51,54,57,1) 1px solid;
+  top: 13.4rem;
+}

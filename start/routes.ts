@@ -83,17 +83,17 @@ const tweets = [
   },
 ];
 
+router.group(() => {
+    router.get('/', async (ctx: HttpContext) => {
+      return ctx.response.redirect().toRoute('home')
+    })
 
-router.get('/', async (ctx: HttpContext) => {
-  return ctx.response.redirect().toRoute('home')
-})
 
+    router.get('/home', async ({ view }) => {
 
-router.get('/home', async ({ view }) => {
-
-  return view.render('pages/home', { tweets })
-}).as('home')
-
+      return view.render('pages/home', { tweets })
+    }).as('home')
+  })
 
 router.get('/login', async ({ view }) => {
   return view.render('pages/login')
