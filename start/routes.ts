@@ -6,9 +6,11 @@
 | The routes file is used for defining the HTTP routes.
 |
 */
-
+import { middleware } from '#start/kernel'
 import router from '@adonisjs/core/services/router'
 import { HttpContext } from "@adonisjs/core/http";
+const SessionController = ()=> import ('#controllers/session_controller')
+
 
 const tweets = [
   {
@@ -96,5 +98,13 @@ const tweets = [
 router.get('/login', async ({ view }) => {
   return view.render('pages/login')
 }).as('login')
+router.post('/login', [SessionController, 'store']).use(middleware.auth())
+
+router
+  .post('logout', async ({ auth, response }) => {
+    await auth.use('web').logout()
+    return response.redirect('/login')
+  })
+  .use(middleware.auth())
 
 

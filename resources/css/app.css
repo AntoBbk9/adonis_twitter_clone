@@ -10,13 +10,13 @@ body{
   background-color: black;
   color: white;
   margin: 0 auto;
-  max-width: 1800px;
 }
 
 #root{
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
 }
 
 .timeline {
@@ -216,6 +216,7 @@ body{
 }
 .container {
   display: flex;
+  justify-content: center;
   max-width: 1200px;
 }
 

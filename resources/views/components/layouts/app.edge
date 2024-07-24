@@ -8,6 +8,11 @@
   @vite(['resources/css/app.css', 'resources/js/app.js'])
   @vite(['resources/css/login.css', 'resources/js/app.js'])
 </head>
+
+@eval(await auth.check())
+@if(auth.isAuthenticated)
+  <p> Hello {{ auth.user.email }} </p>
+@end
 <body>
   <main id="root">
     <div class="container">

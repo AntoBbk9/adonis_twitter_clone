@@ -1,20 +1,12 @@
-import type { HttpContext } from '@adonisjs/core/http'
+import { HttpContext } from '@adonisjs/core/http'
+import User from '#models/user'
 
-export default class AuthController {
-    public async login({request, auth, response}: HttpContext){
-        const email = request.input('email')
-        const password = request.input('password')
+export default class SessionController {
+  async store({ request, auth, response }: HttpContext) {
+    const { email, password } = request.only(['email', 'password'])
 
-        try {
-            await auth.use('web').attempt(email, password)
-            return response.rediect('/')
-        } catch {
-            return response.badRequest('Ivalid credentials')
-        }
-    }
-
-    public async logout({auth, response}: HttpContext){
-        await auth.use('web').logout()
-        return response.redirect('/login')
-    }
+    const user = await User.verifyCredentials(email, password)
+    await auth.use('web').login(user)
+    response.redirect('/dashboard')
+  }
 }
