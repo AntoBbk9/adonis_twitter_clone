@@ -214,5 +214,61 @@ body{
   justify-content: center;
   gap: 20px;
 }
+.container {
+  display: flex;
+  max-width: 1200px;
+}
+
+.sidebar {
+  width: 200px;
+  padding: 20px;
+}
+
+.main-content {
+  flex: 1;
+  border-left: 1px solid #38444D;
+  border-right: 1px solid #38444D;
+}
+
+.trends {
+  width: 350px;
+  padding: 20px;
+}
+
+.logo svg {
+  fill: #fff;
+  width: 20px;
+  height: 20px;
+  margin-left: 15px;
+}
+
+.nav-item {
+  width: 200px;
+  display: flex;
+  padding: 12px;
+  font-size: 20px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.nav-item svg {
+  width: 24px;
+  height: 24px;
+  margin-right: 20px;
+  color: white;
+}
+
+.tweet-btn {
+  background-color: #1DA1F2;
+  color: #fff;
+  border: none;
+  border-radius: 9999px;
+  padding: 15px 0;
+  font-size: 17px;
+  font-weight: bold;
+  width: 100%;
+  cursor: pointer;
+  margin-top: 15px;
+}
 
 

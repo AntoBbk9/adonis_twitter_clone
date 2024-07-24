@@ -83,7 +83,6 @@ const tweets = [
   },
 ];
 
-router.group(() => {
     router.get('/', async (ctx: HttpContext) => {
       return ctx.response.redirect().toRoute('home')
     })
@@ -93,7 +92,6 @@ router.group(() => {
 
       return view.render('pages/home', { tweets })
     }).as('home')
-  })
 
 router.get('/login', async ({ view }) => {
   return view.render('pages/login')

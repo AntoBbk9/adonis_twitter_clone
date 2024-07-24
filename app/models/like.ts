@@ -1,27 +1,15 @@
 import { DateTime } from 'luxon'
 import { BaseModel, column } from '@adonisjs/lucid/orm'
 
-export default class Tweet extends BaseModel {
+export default class Like extends BaseModel {
   @column({ isPrimary: true })
   declare id: number
 
   @column()
-  declare name: string
+  declare likes: string
 
   @column()
-  declare username: string
-
-  @column()
-  declare tweetAvatar: string
-
-  @column()
-  declare text: string
-
-  @column()
-  declare verified: boolean
-
-  @column()
-  declare date: string
+  declare retweets: string
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime

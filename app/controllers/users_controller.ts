@@ -7,7 +7,9 @@ export default class SessionController {
         const { email, password } = request.only(['email', 'password'])
 
         const user = await User.verifyCredentials(email, password)
-        return response.status(200).json({ message: 'Login successful', user })    }
+        return response.status(200).json({ message: 'Login successful', user })
+    }
+    
 }
 
 
