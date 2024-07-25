@@ -10,10 +10,10 @@ export default class SessionController {
         const user = await User.verifyCredentials(email, password)
     try{
          await auth.use('web').login(user)
-        response.redirect('/dashboard')
+        response.redirect('/')
     }catch{
         session.flash({error: 'Identifiants incorrect'})
         response.redirect().toRoute('login')
     }
     }
-}
+}px

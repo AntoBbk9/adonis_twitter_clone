@@ -11,7 +11,7 @@
 
 @eval(await auth.check())
 @if(auth.isAuthenticated)
-  <p> Hello {{ auth.user.email }} </p>
+  <p> Hello </p>
 @end
 <body>
   <main id="root">
@@ -64,5 +64,23 @@
     
   {{{ await $slots.main() }}}
   </main>
+  <footer>
+    @if (auth.user)
+
+    {{ auth.user.fullName }}
+    <form action="/logout" method="post">
+      {{ csrfField() }}
+
+      <button type="submit">Logout</button>
+    </form>
+  
+     @else 
+  
+    <a href="/register">Register</a>
+    <a href="/login">login</a>
+  
+    @endif
+  
+  </footer>
 </body>
 </html>

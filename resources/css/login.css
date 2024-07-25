@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
-* {
+*{
   box-sizing: border-box;
 }
 body {
@@ -32,17 +32,14 @@ body {
 .fisrt_div {
   display: inline-block;
   width: 600px;
-  height: 650px;
+  height: 700px;
   background: rgba(0,0,0,1);
   position: absolute;
   border-radius: 16px;
 }
 .third_div {
   width: 600px;
-  height: 597px;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
+  height: 650px;
   position: absolute;
   top: 53px;
   left: 0px;
@@ -50,21 +47,15 @@ body {
 .forth_div {
   width: 364px;
   height: 538px;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  opacity: 1;
   position: absolute;
-  top: 0px;
   left: 118px;
-  overflow: hidden;
 }
 .title {
   width: 170px;
   color: rgba(231,233,234,1);
   position: absolute;
   top: 19px;
-  left: 32px;
+  left: 140px;
   font-weight: Bold;
   font-size: 31px;
 }
@@ -104,7 +95,7 @@ body {
   margin-block-end: 0.7em;
 
 }
-.input_email {
+.input_email_password {
   background-color: black;
   width: 290px;
   height: 58px;
@@ -117,20 +108,33 @@ body {
   font-size: 20px;
   padding: 12px;
 }
+.password_padding{
+  top: 300px;
+}
+#btn_login{
+  display: flex;
+  left: 9rem;
+  top: 350px
+}
 .next{
-  top: 320px;
+  top: 440px;
 }
 .password{
-  top: 380px;
+  top: 500px;
   font-size: 16px;
   font-weight: 500;
   background-color: black;
   color: white;
-  border: 1px solid rgba(51, 54, 57, 1);
+  border: 1px solid rgba(51, 54, 57, 1); 
 }
 .sign_up {
   position: absolute;
-  top: 29.4rem;
+  top: 36rem;
   left: 9rem;
   font-size: 15px;
 }
+a{
+  text-decoration: none;
+}
+ 
+

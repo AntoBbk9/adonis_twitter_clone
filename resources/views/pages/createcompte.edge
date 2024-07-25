@@ -46,38 +46,42 @@
 </Section>    --}}
 
 <h1>S'inscrire</h1>
-<div>
-    <form action="/register" method="POST">
+    <form action="/register" method="POST" enctype="multipart/form-data">
        {{ csrfField() }}
 
-        <label for="">
-            Fullname
-            <input type="text" name="fullname" value="{{ old('fullname') || ''}}">
+        <label for="fullname">
+            FullName
+        </label>    
+            <input id="fullName" type="text" name="fullName" value="{{ old('fullName') || ''}}" required>
             {{--  @inputError('fullname')
             
             {{ $message.join(', ')}}
 
             @end  --}}
+
+      
      
-        <label for="">
-            Email
-            <input type="email" name="email" value="{{ old('email') || ''}}">
+        <label for="email">
+            Email  </label>
+            <input id="email" type="email" name="email" value="{{ old('email') || ''}}" required>
             {{--  @inputError('email')
 
             {{ $message.join(', ')}}
 
             @end  --}}
-        </label>   
+          
         
-        <label for="">
-            Password
-            <input type="password" name="password" value="{{ old('password') || ''}}">
+        <label for="password">
+            Password  </label>
+        
+            <input id="password" type="password" name="password" value="{{ old('password') || ''}}" required>
             {{--  @inputError('password')
             
             {{ $message.join(', ')}}
 
             @end  --}}
+       
         <button type="submit"> S'inscrire</button>
-        </div>
 </form>
+
 @end
