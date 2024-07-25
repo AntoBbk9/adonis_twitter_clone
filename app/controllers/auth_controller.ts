@@ -1,7 +1,7 @@
 import { HttpContext } from '@adonisjs/core/http'
 import User from '#models/user'
 
-export default class SessionController {
+export default class AuthController {
   async store({ request, auth, response }: HttpContext) {
     const { email, password } = request.only(['email', 'password'])
 
@@ -9,4 +9,11 @@ export default class SessionController {
     await auth.use('web').login(user)
     response.redirect('/dashboard')
   }
+  async showregister({ request, auth, response }: HttpContext) {
+    
+  }
+  async storeregister({ request, auth, response }: HttpContext) {
+
+}
+
 }

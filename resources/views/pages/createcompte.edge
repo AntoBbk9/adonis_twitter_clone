@@ -1,6 +1,6 @@
 @layouts.app('title', 'sign_in')
 
-
+{{--  
 <Section class="login_section">
     <div class="fisrt_div">
         <div class="nav_bar">
@@ -43,5 +43,41 @@
             <span class="sign_up">Don't have an account? <a href="createcompte.edge">Sign up</a></span>
         </div>
     </div> 
-</Section>  
+</Section>    --}}
+
+<h1>S'inscrire</h1>
+<div>
+    <form action="/register" method="POST">
+       {{ csrfField() }}
+
+        <label for="">
+            Fullname
+            <input type="text" name="fullname" value="{{ old('fullname') || ''}}">
+            {{--  @inputError('fullname')
+            
+            {{ $message.join(', ')}}
+
+            @end  --}}
+     
+        <label for="">
+            Email
+            <input type="email" name="email" value="{{ old('email') || ''}}">
+            {{--  @inputError('email')
+
+            {{ $message.join(', ')}}
+
+            @end  --}}
+        </label>   
+        
+        <label for="">
+            Password
+            <input type="password" name="password" value="{{ old('password') || ''}}">
+            {{--  @inputError('password')
+            
+            {{ $message.join(', ')}}
+
+            @end  --}}
+        <button type="submit"> S'inscrire</button>
+        </div>
+</form>
 @end
