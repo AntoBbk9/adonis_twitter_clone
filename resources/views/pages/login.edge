@@ -1,8 +1,8 @@
-@layouts.app('title', 'login')
+@vite(['resources/css/login.css', 'resources/js/app.js'])
 
     <div class="timeline">
         <Section class="login_section">
-        <div class="fisrt_div">
+        <div class="container">
             <div class="nav_bar">
                 <img class="logo_image" src='images/image_twitter.png' alt='image twitter'>
             </div>
@@ -40,15 +40,13 @@
                     <div>
                         <input class="input_email_password password_padding" type="password" name="password" value="{{ old('password') || ''}}" placeholder="Enter your password">
                     </div>
-                    <button id="btn_login" type="submit">Login</button>
-                    <button class="btn_google_apple btn_padding next">
-                        <span>Next</span>
-                    </button>
+                    <button type="submit" class="btn_google_apple btn_padding next">
+                        <span>Login</span>
+                    </button><br>
                     <button class="btn_google_apple btn_padding password">
                         <span>Forgot password?</span>
-                    </button>
+                    </button><br><br><br>
                     <span class="sign_up">Don't have an account? <a href="/register">Sign up</a></span>
                 </form>
             </div> 
         </Section>  
-@end

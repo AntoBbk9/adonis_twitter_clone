@@ -16,4 +16,4 @@ export default class SessionController {
         response.redirect().toRoute('login')
     }
     }
-}px
+}

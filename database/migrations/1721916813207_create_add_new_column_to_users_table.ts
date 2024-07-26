@@ -12,6 +12,7 @@ export default class extends BaseSchema {
       table.string('email', 254).notNullable().unique()
       table.date('birthday')
       table.string('profilimage')
+      table.string('sexe').notNullable()
       table.string('password').notNullable()
 
       table.timestamp('created_at').notNullable()

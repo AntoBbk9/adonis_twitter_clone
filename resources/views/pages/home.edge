@@ -1,11 +1,14 @@
 @layouts.app('title', 'Home')
 
+
  <div class="timeline">
   
    @component('components/header')
    @endcomponent
    @component('components/tweetEditor')
    @endcomponent
+
+  
 
    @each(tweet in tweets)
       @component('components/tweet', {...tweet})

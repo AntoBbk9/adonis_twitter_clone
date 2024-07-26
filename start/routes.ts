@@ -11,6 +11,7 @@ import { HttpContext } from "@adonisjs/core/http";
 const LoginController = ()=> import ('#controllers/session_controller')
 const RegistersController = () => import ('#controllers/registers_controller')
 const LogoutsController = () => import ('#controllers/logouts_controller')
+import { middleware } from '#start/kernel'
 
 
 
@@ -96,7 +97,7 @@ const tweets = [
     router.get('/home', async ({ view }) => {
 
       return view.render('pages/home', { tweets })
-    }).as('home')
+    }).as('home').use(middleware.auth())
 
 
 router.group(() => {

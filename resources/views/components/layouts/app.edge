@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> Home / x </title>
+  <title> {{ title || ''}} </title>
 
   @vite(['resources/css/app.css', 'resources/js/app.js'])
-  @vite(['resources/css/login.css', 'resources/js/app.js'])
+
 </head>
 
 @eval(await auth.check())
@@ -15,7 +15,7 @@
 @end
 <body>
   <main id="root">
-    <div class="container">
+    <div class="containersidebar">
       <aside class="sidebar">
         <div class="logo">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter-x" viewBox="0 0 16 16">
@@ -67,11 +67,11 @@
   <footer>
     @if (auth.user)
 
-    {{ auth.user.fullName }}
+    {{ auth.user.firstname }} {{ auth.user.secondname}}
     <form action="/logout" method="post">
       {{ csrfField() }}
 
-      <button type="submit">Logout</button>
+      <button class="btn_logout" type="submit">Logout</button>
     </form>
   
      @else 

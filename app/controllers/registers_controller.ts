@@ -9,7 +9,7 @@ export default class RegistersController {
   }
   async store({ request, response, auth }: HttpContext) {
 
-    try{
+   
       log('starting validation');
       
       const data = await request.validateUsing(registervalidator)
@@ -19,11 +19,7 @@ export default class RegistersController {
 
       await auth.use('web').login(user)
       return response.redirect().toPath('/')
-    }catch(error){
-      console.error('Error during registration:', error)
-
-      return response.status(500).send('Internal Server Error')
-    }
+   
   }
     
 }
