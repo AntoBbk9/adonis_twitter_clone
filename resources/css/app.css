@@ -53,6 +53,7 @@ body{
 .page-tab-active {
   font-weight: bold;
   border-bottom: 4px solid #1D9BF0;
+  color: white;
 }
 
 .page-title {
