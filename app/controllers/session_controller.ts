@@ -12,7 +12,13 @@ export default class SessionController {
          await auth.use('web').login(user)
         response.redirect('/')
     }catch{
-        session.flash({error: 'Identifiants incorrect'})
+        session.flash('notification', {
+            type: 'faild',
+            message: 'the firstname is required'
+          })
+        
+        console.log(session.flashMessages.all());
+        
         response.redirect().toRoute('login')
     }
     }

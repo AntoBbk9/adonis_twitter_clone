@@ -9,7 +9,6 @@ export default class RegistersController {
   }
   async store({ request, response, auth  }: HttpContext) {
     // try {
-      log('starting validation');
       
       const data = await request.validateUsing(registervalidator)
       log('validation successful, creating user');
@@ -17,9 +16,10 @@ export default class RegistersController {
       const user = await User.create(data)
 
       await auth.use('web').login(user)
+
       return response.redirect().toPath('/')
     // } catch (erros) {
-    //   return ({{ erros }})
+
     // } 
   } 
 }

@@ -15,20 +15,20 @@ export const registervalidator = vine.compile(
         
     })    
 )
-public messages = {
-    'firstname.required': 'the firstname is required',
-    'secondname.required': 'the secondname is required',
-    'telephone.required': 'the telephone is required',
-    'email.required': 'the email is required',
-    'birthday.required': 'the birthday is required',
-    'password.required': 'the password is required',
+// public messages = {
+//     'firstname.required': 'the firstname is required',
+//     'secondname.required': 'the secondname is required',
+//     'telephone.required': 'the telephone is required',
+//     'email.required': 'the email is required',
+//     'birthday.required': 'the birthday is required',
+//     'password.required': 'the password is required',
 
 
-    'firstname.minLength': 'The firstname must be more than 3 characters',
-    'secondname.minLength': 'The secondname must be more than 3 characters',
-    'password.minLength': 'The password must be more than 7 characters',
+//     'firstname.minLength': 'The firstname must be more than 3 characters',
+//     'secondname.minLength': 'The secondname must be more than 3 characters',
+//     'password.minLength': 'The password must be more than 7 characters',
 
-  }  
+//   }  
 export const loginvalidator = vine.compile(
     vine.object({
         email: vine.string().email().normalizeEmail(),
