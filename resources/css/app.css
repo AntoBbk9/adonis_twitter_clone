@@ -215,11 +215,11 @@ body{
   justify-content: center;
   gap: 20px;
 }
-.containersidebar {
+.container {
   display: flex;
   justify-content: center;
-  max-width: 1200px;
-}
+  max-width: 1200px; 
+} 
 
 .sidebar {
   width: 200px;
@@ -273,4 +273,41 @@ body{
   margin-top: 15px;
 }
 
+@media screen and (max-width: 1024px) {
+  span{
+    display: none;
+  }
+  .container {
+    max-width: 100%;
+    display: flex;
+    justify-content: left;
+  }
+  .tweet-btn {
+    height: 50px;
+    border-radius: 50%;
+  }
+  .sidebar{
+    width: 90px;
+  }
+  .timeline{
+    flex: 0 0 0 0;
+  }
+  .r-4qtqp9{
+    width: 24px;
+    height: 24px;
+    color: rgb(255, 255, 255);
 
+  }
+  }
+
+  @media screen and (max-width: 450px) {
+  .timeline{
+    flex: 0 0 50px;
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .r-4qtqp9{
+    display: none;
+  }
+}

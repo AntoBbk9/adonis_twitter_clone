@@ -120,4 +120,19 @@ button:hover {
     margin-block-end: 0.7em;
   
   }  
-   
+  @media screen and (max-width: 1024px) {
+    .container {
+    display: flex;
+    flex-direction: column;
+      width: 600px;
+      height: 100%;
+      top: 70px;
+    }
+    .form{
+      gap: 15px;
+    }
+    .logo_img{
+        width: 2.5rem;
+        height: 2.5rem;
+    }    
+  }

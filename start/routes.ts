@@ -99,7 +99,7 @@ const tweets = [
       return view.render('pages/home', { tweets })
     }).as('home').use(middleware.auth())
     
-    router.post('/home', [PostsController, 'store'])
+    router.post('/home/add', [PostsController, 'store'])
 
     router.group(() => {
       router.get('/register', [RegistersController, 'showregister']).as('register.show')

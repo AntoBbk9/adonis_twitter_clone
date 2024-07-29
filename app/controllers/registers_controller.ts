@@ -7,7 +7,7 @@ export default class RegistersController {
   async showregister({ view }: HttpContext) {
     return view.render('pages/createcompte')
   }
-  async store({ request, response, auth }: HttpContext) {
+  async store({ request, response, auth  }: HttpContext) {
     // try {
       log('starting validation');
       
@@ -18,11 +18,8 @@ export default class RegistersController {
 
       await auth.use('web').login(user)
       return response.redirect().toPath('/')
-    // } catch (error) {
-      
-    // }
-   
-     
-  }
-    
+    // } catch (erros) {
+    //   return ({{ erros }})
+    // } 
+  } 
 }

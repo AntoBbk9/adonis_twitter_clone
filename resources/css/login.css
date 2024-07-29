@@ -108,3 +108,23 @@ button:hover {
   margin-block-end: 0.7em;
 
 }  
+@media screen and (max-width: 1024px) {
+  .login_section {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    height: 100%;
+    background: black;
+  }
+  .container {
+    width: 600px;
+    height: 100%;
+    top: 70px;
+  }
+  .third_div{
+    padding-top: 200px;
+  }
+  .form{
+    gap: 15px;
+  }
+}
