@@ -20,9 +20,6 @@ export default class Tweet extends BaseModel {
   @column()
   declare verified: boolean
 
-  @column()
-  declare date: string
-
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
 

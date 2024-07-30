@@ -8,7 +8,8 @@ export default class extends BaseSchema {
       table.increments('id',{
         primaryKey:true
       })
-
+      table.string('name').notNullable()
+      table.string('username').notNullable()
       table.string('tweetAvatar').notNullable()
       table.string('text').notNullable()
       table.integer('author_id').notNullable()

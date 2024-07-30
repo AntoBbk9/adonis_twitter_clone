@@ -68,10 +68,10 @@
                 @end
 
                 <input id="profilimage" type="file" name="profilimage" value="{{ old('profilimage') || ''}}" placeholder="Profilimage">
-                {{--  <select name="sexe" id="sexe">
+                <select name="sexe" id="sexe">
                     <option value="masculin">Masculin</option>
                     <option value="feminin">Feminin</option>
-                </select>  --}}
+                </select> 
                 <input id="password" type="password" name="password" value="{{ old('password') || ''}}" placeholder="Password" >
                 @inputError('password')
                     @each(message in messages )

@@ -1,7 +1,7 @@
 const buttonExplore= document.querySelector('#explore');
 const buttonFollowing= document.querySelector('#following');
-console.log(buttonExplore);
-console.log(buttonFollowing);
+const btnSubmitTweet = document.querySelector('.button')
+console.log(btnSubmitTweet);
 
   const addClass = (element, className) => {
     element.classList.add(className);
@@ -22,7 +22,8 @@ console.log(buttonFollowing);
   buttonFollowing.addEventListener('click', ()=>{
     if (buttonFollowing.classList.contains('page-tab-active')) {
         removeClass(buttonFollowing, 'page-tab-active');
-        addClass(buttonExplore, 'page-tab-active')
+        addClass(buttonExplore, 'page-tab-active');
+        addClass(buttonFollowing, '.page-tab-disabled');
 
     }else{
         addClass(buttonFollowing, 'page-tab-active');
@@ -30,7 +31,7 @@ console.log(buttonFollowing);
     }
   });
 
-  document.querySelector('.tweet-editor-form').addEventListener('submit', function(e) {
+  btnSubmitTweet.addEventListener('submit', function(e) {
     e.preventDefault();
     const tweetContent = document.querySelector('.tweet-editor-input').value;
     console.log('Tweet soumis:', tweetContent);
