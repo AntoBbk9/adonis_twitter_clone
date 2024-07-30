@@ -1,9 +1,8 @@
 const buttonExplore= document.querySelector('#explore');
 const buttonFollowing= document.querySelector('#following');
-const btnSubmitTweet = document.querySelector('.button')
-console.log(btnSubmitTweet);
+const btnSubmitTweet = document.querySelector('.button');
 
-  const addClass = (element, className) => {
+const addClass = (element, className) => {
     element.classList.add(className);
   }
   const removeClass = (element, className) => {
@@ -29,7 +28,7 @@ console.log(btnSubmitTweet);
         addClass(buttonFollowing, 'page-tab-active');
         removeClass(buttonExplore, 'page-tab-active');
     }
-  });
+    });
 
   btnSubmitTweet.addEventListener('submit', function(e) {
     e.preventDefault();

@@ -1,5 +1,7 @@
 @layouts.app('title', 'Home')
 
+@component('components/sidebar')
+@endcomponent
 
  <div class="timeline">
   
@@ -9,10 +11,14 @@
   @component('components/tweetEditor')
   @endcomponent
   
-
    @each(tweet in tweets)
-      @component('components/tweet', {...tweet})
-      @endcomponent
+      <div id="scroller", style="position relative;">
+        <div class="scroller_list">
+          @component('components/tweet', {...tweet})
+          @endcomponent
+        </div>
+        <div class="scroller_buffer"></div>
+      </div>
    @end
 
  </div>
