@@ -9,8 +9,8 @@ export default class extends BaseSchema {
         primaryKey:true
       })
 
-      table.integer('id_user')
-      table.integer('id_follower')
+      table.integer('id_user').unsigned().references('id').inTable('users').onDelete('CASCADE')
+      table.integer('id_follower').unsigned().references('id').inTable('users').onDelete('CASCADE')
       table.boolean('isFollowing')
       table.timestamp('created_at')
       table.timestamp('updated_at')

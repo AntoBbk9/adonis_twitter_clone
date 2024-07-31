@@ -35,36 +35,26 @@
 
                 <input id="firstname" type="text" name="firstname" value="{{ old('firstname') || ''}}" placeholder="Firstname" >
                 @inputError('firstname')
-                    @each(message in messages )
-                        <p> {{ messages}} </p>
-                    @end
+                    <p> {{ $messages.join(', ')}} </p>
                 @end
                 <input id="secondname" type="text" name="secondname" value="{{ old('secondname') || ''}}" placeholder="Secondname" >
                 @inputError('secondname')
-                    @each(message in messages )
-                        <p> {{ messages}} </p>
-                    @end
+                    <p> {{ $messages.join(', ')}} </p>
                 @end
 
                 <input id="telephone" type="text" name="telephone" value="{{ old('telephone') || ''}}" placeholder="Telephone">
                 @inputError('telephone')
-                    @each(message in messages )
-                        <p> {{ messages}} </p>
-                    @end
+                    <p> {{ $messages.join(', ')}} </p>
                 @end
 
                 <input id="email" type="email" name="email" value="{{ old('email') || ''}}" placeholder="Email" >
                 @inputError('email')
-                    @each(message in messages )
-                        <p> {{ messages}} </p>
-                    @end
+                    <p> {{ $messages.join(', ')}} </p>
                 @end
 
                 <input id="birthday" type="date" name="birthday" value="{{ old('birthday') || ''}}" placeholder="Birthday" >
                 @inputError('birthday')
-                    @each(message in messages )
-                        <p> {{ messages}} </p>
-                    @end
+                    <p> {{ $messages.join(', ')}} </p>
                 @end
 
                 <input id="profilimage" type="file" name="profilimage" value="{{ old('profilimage') || ''}}" placeholder="Profilimage">
@@ -74,9 +64,7 @@
                 </select> 
                 <input id="password" type="password" name="password" value="{{ old('password') || ''}}" placeholder="Password" >
                 @inputError('password')
-                    @each(message in messages )
-                        <p> {{ messages}} </p>
-                    @end
+                    {{ $messages.join(', ')}} 
                 @end
                 
                 <button type="submit">Create</button>

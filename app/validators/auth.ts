@@ -1,14 +1,5 @@
 import vine, { SimpleMessagesProvider } from '@vinejs/vine'
 
-const messages = { 
-    required: 'The {{ field }} field is required',
-  }
-  
-  const fields = {
-    first_name: 'firstname',
-    last_name: 'secondname',
-  }
-
 export const registerValidator = vine.compile(
     vine.object({
         firstname: vine.string().minLength(4).maxLength(100).nullable(),
@@ -31,4 +22,3 @@ export const loginValidator = vine.compile(
     })
 )
 
-vine.messagesProvider = new SimpleMessagesProvider(messages, fields)

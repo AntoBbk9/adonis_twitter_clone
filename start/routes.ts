@@ -14,6 +14,7 @@ const RegistersController = () => import ('#controllers/registers_controller')
 const LogoutsController = () => import ('#controllers/logouts_controller')
 const TweetsController = () => import ('#controllers/tweets_controller')
 const FollowerController = () => import ('#controllers/followers_controller')
+const UsersController = () => import ('#controllers/users_controller')
 
 
 
@@ -100,8 +101,8 @@ const tweets = [
       return view.render('pages/home', { tweets })
     }).as('home').use(middleware.auth())
 
-    router.get('/follow', [FollowerController, 'follow']).use(middleware.auth())
-    router.delete('/unfollow', [FollowerController, 'unfollow']).use(middleware.auth())
+    router.get('/users', [UsersController, 'index']).use(middleware.auth())
+    router.delete('/users', [UsersController, 'follow']).use(middleware.auth())
     
     router.group(() => {
       router.get('/register', [RegistersController, 'showregister']).as('register.show')

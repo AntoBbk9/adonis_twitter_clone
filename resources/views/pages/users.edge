@@ -1,0 +1,21 @@
+<h1>Users</h1>
+
+  {{--  @if(session('success'))
+    <p style="color: green;">{{ session('success') }}</p>
+  @endif
+
+  @if(session('error'))
+    <p style="color: red;">{{ session('error') }}</p>
+  @endif  --}}
+
+  <ul>
+    @each(user in users)
+      <li>
+        {{ user.firstname }}{{ user.secondname }}
+        <form action="/users" method="POST" style="display:inline;">
+          {{ csrfField() }} 
+          <button type="submit">Follow</button>
+        </form>
+      </li>
+    @endeach
+  </ul>
