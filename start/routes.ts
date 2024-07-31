@@ -7,12 +7,13 @@
 |
 */
 import router from '@adonisjs/core/services/router'
-import { HttpContext } from "@adonisjs/core/http";
+import { HttpContext } from "@adonisjs/core/http"
+import { middleware } from '#start/kernel'
 const LoginController = ()=> import ('#controllers/session_controller')
 const RegistersController = () => import ('#controllers/registers_controller')
 const LogoutsController = () => import ('#controllers/logouts_controller')
 const TweetsController = () => import ('#controllers/tweets_controller')
-import { middleware } from '#start/kernel'
+const FollowerController = () => import ('#controllers/followers_controller')
 
 
 
@@ -97,9 +98,11 @@ const tweets = [
     router.get('/home', async ({ view }) => {
 
       return view.render('pages/home', { tweets })
-    }).as('home.mine').use(middleware.auth())
+    }).as('home').use(middleware.auth())
+
+    router.get('/follow', [FollowerController, 'follow']).use(middleware.auth())
+    router.delete('/unfollow', [FollowerController, 'unfollow']).use(middleware.auth())
     
-    router.get('/home/abonnements' [TweetsController, 'followingTweets'])
     router.group(() => {
       router.get('/register', [RegistersController, 'showregister']).as('register.show')
       router.post('/register', [RegistersController, 'store']).as('register.store')

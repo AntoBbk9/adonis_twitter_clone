@@ -6,14 +6,14 @@ export default class TweetsController {
         if (!auth.user) {
               return view.render('errors/unauthorized')
         }
-        const followingIds = await DBtwiter.from('followings')
-        .where('follower_id', auth.user.id)
-        .pluck('following_id')
+        // const followingIds = await DBtwiter.from('followings')
+        // .where('follower_id', auth.user.id)
+        // .pluck('following_id')
 
-    const tweets = await Tweet.query()
-      .whereIn('user_id', followingIds)
-      .orderBy('created_at', 'desc')
+//     const tweets = await Tweet.query()
+//       .whereIn('user_id', followingIds)
+//       .orderBy('created_at', 'desc')
 
-    return view.render('pages/home', { tweets })
+//     return view.render('pages/home', { tweets })
   }
-}
+ }

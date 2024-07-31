@@ -6,7 +6,13 @@ export default class Following extends BaseModel {
   declare id: number
 
   @column()
-  declare idFollower: string
+  declare id_user: number
+
+  @column()
+  declare id_follower: number
+
+  @column()
+  declare isFollowing: boolean
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime

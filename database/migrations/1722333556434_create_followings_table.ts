@@ -9,7 +9,9 @@ export default class extends BaseSchema {
         primaryKey:true
       })
 
-      table.string('idFollower')
+      table.integer('id_user')
+      table.integer('id_follower')
+      table.boolean('isFollowing')
       table.timestamp('created_at')
       table.timestamp('updated_at')
     })
