@@ -19,39 +19,6 @@
         </div>
         <div class="scroller_buffer"></div>
       </div>
-      <script>
-        const scrollerList = document.querySelector('#scroller .scroller_list')
-        const scrollerBuffer = document.querySelector('#scroller .scroller_buffer')
-        const states = {
-          IDLE: 0,
-          WORKING: 1,
-          DONE: 2
-        }
-        let state = states.IDLE
-        let page = 1
-        let currentPage = {{ page.currentPage }}
-
-        const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            fetchNextPage()
-          }
-        })
-        })
-        observer.observe(scrollerBuffer)
-        async function fetchNextPage() {
-          if (state === states.WORKING) return
-          state = states.WORKING
-          const nextPage = ++currentPage;
-          const { html, page } = await fetch(`/api/posts/paginate/${nextPage}`).then(r => r.json())
-          scrollerList.innerHTML += HTML
-          state = states.IDLE
-          if (nextPage >= page.meta.last_page) {
-            observer.unobserve(scrollerBuffer)
-            state = states.DONE
-          }
-        }
-      </script>
    @end
 
  </div>

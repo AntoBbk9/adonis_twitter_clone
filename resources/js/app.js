@@ -2,61 +2,54 @@ const buttonExplore= document.querySelector('#explore');
 const buttonFollowing= document.querySelector('#following');
 const btnSubmitTweet = document.querySelector('.button');
 
-let page = 1;  // Page initiale
-let loading = false;  // Indicateur de chargement
-let noMoreTweets = false;  // Indicateur pour savoir s'il n'y a plus de tweets à charger
-
-async function loadTweets() {
-  if (loading || noMoreTweets) return;  // Ne pas charger si déjà en cours ou plus de tweets
-
-  loading = true;
-  document.getElementById('loading').style.display= 'block';  // Afficher l'indicateur de chargement
-
-  try {
-    const response = await fetch(`/tweets?page=${page}`);  // Appeler l'API pour récupérer les tweets
-    const result = await response.json();  // Convertir la réponse en JSON
-    const tweets = result.data;  // Obtenir les tweets
-
-    if (tweets.length < 20) {  // Vérifier s'il y a moins de tweets que la limite
-      noMoreTweets = true;  // Indiquer qu'il n'y a plus de tweets
-    }
-
-    const tweetsContainer = document.getElementById('scroller');
-    tweets.forEach(tweet => {
-      // Créer un nouvel élément pour chaque tweet et l'ajouter au conteneur
-      const tweetElement = document.createElement('div');
-      tweetElement.className = 'scroller_list';
-      tweetElement.innerHTML = `
-        <div>
-          <p>${tweet.text}</p>
-          <p>${tweet.username}</p>
-          <p>${tweet.dateStr}</p>
-        </div>
-      `;
-      tweetsContainer.appendChild(tweetElement);  // Ajouter l'élément au conteneur
-    });
-
-    page++;  // Passer à la prochaine page
-  } catch (error) {
-    console.error(error);  // Gérer les erreurs
-  } finally {
-    loading = false;  // Réinitialiser l'indicateur de chargement
-    document.getElementById('loading').style.display = 'none';  // Cacher l'indicateur de chargement
-  }
-}
-
-// Écouter l'événement de défilement pour charger plus de tweets lorsque nécessaire
-window.addEventListener('scroll', () => {
-  if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 500) {
-    loadTweets();
-  }
-});
-
-// Charger les tweets lors du chargement initial de la page
 document.addEventListener('DOMContentLoaded', () => {
-  loadTweets();
-});
+  const followButtons = document.querySelectorAll('.follow-btn');
+  const unfollowButtons = document.querySelectorAll('.unfollow-btn');
 
+  followButtons.forEach(button => {
+    button.addEventListener('click', async () => {
+      const userId = button.getAttribute('data-user-id');
+      try {
+        await fetch('/follow', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+          },
+          body: JSON.stringify({ userId }),
+        });
+        button.textContent = 'Se Désabonner';
+        button.classList.remove('follow-btn');
+        button.classList.add('unfollow-btn');
+      } catch (error) {
+        console.error('Erreur de suivi:', error);
+      }
+    });
+  });
+
+  unfollowButtons.forEach(button => {
+    button.addEventListener('click', async () => {
+      const userId = button.getAttribute('data-user-id');
+      try {
+        await fetch('/unfollow', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+          },
+          body: JSON.stringify({ userId }),
+        });
+        button.textContent = 'Suivre';
+        button.classList.remove('unfollow-btn');
+        button.classList.add('follow-btn');
+      } catch (error) {
+        console.error('Erreur de désabonnement:', error);
+      }
+    });
+  });
+});
 
 const addClass = (element, className) => {
     element.classList.add(className);
@@ -92,3 +85,4 @@ const addClass = (element, className) => {
     console.log('Tweet soumis:', tweetContent);
     document.querySelector('.tweet-editor-input').value = '';
   });
+

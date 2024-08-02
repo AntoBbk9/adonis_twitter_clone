@@ -94,8 +94,7 @@ const tweets = [
       await ctx.auth.check()
       return ctx.response.redirect().toRoute('home')
     })
-    router.post('/home', [TweetsController, 'paginate']).use(middleware.auth())
-    
+        
     router.get('/home', async ({ view }) => {
 
       return view.render('pages/home', { tweets })

@@ -10,41 +10,61 @@ export default class UsersController {
         return response.status(200).json({ message: 'Login successful', user })
     }
 
-    async index({ view, auth, response }: HttpContext) {
-        try {
-            const authUser = await auth.authenticate()
+  public async index({ view, auth }: HttpContext) {
+    try {
+      const authUser = await auth.authenticate()
+      const users = await User.query().whereNot('id', authUser.id)
 
-            // const followingIds = await Follower.query()
-            // .where('follower', authUser.id)
+      const followingIds = await Follower.query()
+        .where('id_follower', authUser.id)
 
-            const users = await User.query()
-            .where('id', '!=', authUser.id)
-            // .andWhereNotIn('id', followingIds)
+      const usersWithFollowingStatus = users.map(user => ({
+        ...user.toJSON(),
+        is_following: followingIds.includes(user.id),
+      }))
 
-            // .pluck('user_id')
+      return view.render('pages/users', { users: usersWithFollowingStatus })
+    } catch (error) {
+      console.error('Erreur lors de la récupération des utilisateurs:', error)
+      return view.render('pages/users', { users: [] })
+    }
+  }
 
-            return view.render('pages/users', { users })
-        }catch(error){
-            return response.status(500).send({ error: 'Une erreur est survenue lors de la récupération des utilisateurs.' })
-        }
+  public async follow({ request, auth, response }: HttpContext) {
+    const userIdToFollow = request.input('userId')
+    const currentUser = auth.user
+
+    if (!currentUser) {
+      return response.status(401).send({ error: 'Utilisateur non authentifié' })
     }
 
-    async follow({ request, response, session }) {
-        let id_user = request.input('userId')
-        let id_follower = request.input('follower')
-        
-        const follower = new Follower()
-        follower.id_user = id_user
-        follower.id_follower = id_follower
-        follower.is_following = true
-        await follower.save()
-        response.send(true)
+    await Follower.create({
+      id_user: userIdToFollow,
+      id_follower: currentUser.id,
+      is_following: true,
+    })
 
-        session.flash('notification', {
-            type: 'success',
-            message: 'Vous venez de suivre cette personne avec succes'
-        })       
-        return response.redirect().toPath('/')
+    return response.status(200).send({ message: 'Suivi ajouté avec succès' })
+  }
+
+  public async unfollow({ request, auth, response }: HttpContext) {
+    const userIdToUnfollow = request.input('userId')
+    const currentUser = auth.user
+
+    if (!currentUser) {
+      return response.status(401).send({ error: 'Utilisateur non authentifié' })
     }
+
+    const follow = await Follower.query()
+      .where('user_id', userIdToUnfollow)
+      .andWhere('follower_id', currentUser.id)
+      .first()
+
+    if (follow) {
+      await follow.delete()
+    }
+
+    return response.status(200).send({ message: 'Désabonnement réussi' })
+  }
 }
 

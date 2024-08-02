@@ -1,3 +1,4 @@
+@layouts.app('title', 'followers')
 
   @flashMessage('notification')
   <div style="color: green;" class="notification {{ $message.type }}">
@@ -5,18 +6,18 @@
   </div>
   @end
 
-  {{--  @if(session('error'))
-    <p style="color: red;">{{ session('error') }}</p>
-  @endif   --}}
     <h1>followers</h1>
     <ul>
       @each(user in users)
         <li>
-          {{ user.firstname }} {{ user.secondname }}
-          <form action="/users" method="POST" style="display:inline;">
-            {{ csrfField() }} 
-            <button type="submit">Follow</button>
-          </form>
+          <span>{{ user.firstname }} {{user.secondname }}</span>
+          @if(user.is_following)
+            <button class="unfollow-btn" data-user-id="{{ user.id }}">Se Désabonner</button>
+          @else
+            <button class="follow-btn" data-user-id="{{ user.id }}">Suivre</button>
+          @endif
         </li>
       @endeach
     </ul>
+  @end
+
