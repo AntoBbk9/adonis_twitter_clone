@@ -13,7 +13,6 @@ const LoginController = ()=> import ('#controllers/session_controller')
 const RegistersController = () => import ('#controllers/registers_controller')
 const LogoutsController = () => import ('#controllers/logouts_controller')
 const TweetsController = () => import ('#controllers/tweets_controller')
-const FollowerController = () => import ('#controllers/followers_controller')
 const UsersController = () => import ('#controllers/users_controller')
 
 
@@ -95,14 +94,15 @@ const tweets = [
       await ctx.auth.check()
       return ctx.response.redirect().toRoute('home')
     })
-
+    router.post('/home', [TweetsController, 'paginate']).use(middleware.auth())
+    
     router.get('/home', async ({ view }) => {
 
       return view.render('pages/home', { tweets })
     }).as('home').use(middleware.auth())
 
     router.get('/users', [UsersController, 'index']).use(middleware.auth())
-    router.delete('/users', [UsersController, 'follow']).use(middleware.auth())
+    router.post('/users', [UsersController, 'follow']).use(middleware.auth())
     
     router.group(() => {
       router.get('/register', [RegistersController, 'showregister']).as('register.show')

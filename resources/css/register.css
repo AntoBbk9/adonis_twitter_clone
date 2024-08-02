@@ -118,8 +118,13 @@ button:hover {
     border-color: rgba(51, 54, 57, 1);
     margin-block-start: 0.7em;
     margin-block-end: 0.7em;
-  
   }  
+ .error_message{
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: red;
+ }
+
   @media screen and (max-width: 1024px) {
     .container {
     display: flex;

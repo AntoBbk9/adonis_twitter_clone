@@ -2,18 +2,16 @@ import type { HttpContext } from '@adonisjs/core/http'
 import Tweet from '#models/tweet'
 
 export default class TweetsController {
-    async followingTweets({ auth, view }: HttpContext){
-        if (!auth.user) {
-              return view.render('errors/unauthorized')
-        }
-        // const followingIds = await DBtwiter.from('followings')
-        // .where('follower_id', auth.user.id)
-        // .pluck('following_id')
+      private  perPage = 20
+      
+      public async index ({ view }: HttpContext) {
+        const page = await Tweet.query().paginate(1, this.perPage)
+        return view.render('/home', { page })
+      }
 
-//     const tweets = await Tweet.query()
-//       .whereIn('user_id', followingIds)
-//       .orderBy('created_at', 'desc')
-
-//     return view.render('pages/home', { tweets })
+      public async paginate({ response, params, view }: HttpContext) {
+        const page = await Tweet.query().paginate(params.page, this.perPage)
+        const html = await view.render('/home', { posts: page })
+        return response.json({ html, page })
+      }
   }
- }

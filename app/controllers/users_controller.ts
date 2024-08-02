@@ -1,7 +1,6 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import User from '#models/user'
-import Following from '../models/following'
-
+import Follower from '#models/following'
 
 export default class UsersController {
     async store({request, response}: HttpContext){
@@ -11,33 +10,41 @@ export default class UsersController {
         return response.status(200).json({ message: 'Login successful', user })
     }
 
-    async index({ view }: HttpContext) {
-        const users = await User.all()
-        return view.render('pages/users', { users })
+    async index({ view, auth, response }: HttpContext) {
+        try {
+            const authUser = await auth.authenticate()
+
+            // const followingIds = await Follower.query()
+            // .where('follower', authUser.id)
+
+            const users = await User.query()
+            .where('id', '!=', authUser.id)
+            // .andWhereNotIn('id', followingIds)
+
+            // .pluck('user_id')
+
+            return view.render('pages/users', { users })
+        }catch(error){
+            return response.status(500).send({ error: 'Une erreur est survenue lors de la récupération des utilisateurs.' })
+        }
     }
 
-    // async follow({ params, auth, response }){
-    //     const id_user = auth.user.id
-    //     const id_follower = params.id
+    async follow({ request, response, session }) {
+        let id_user = request.input('userId')
+        let id_follower = request.input('follower')
+        
+        const follower = new Follower()
+        follower.id_user = id_user
+        follower.id_follower = id_follower
+        follower.is_following = true
+        await follower.save()
+        response.send(true)
 
-    //     if(id_user === id_follower){
-    //         return response.redirect().back.with('error', 'Vous ne pouvez vous suivre vous-même')
-    //     }
-
-    //     const exists = await Following.query()
-    //     .where('follower_id', id_user)
-    //     .where('following_id', id_follower)
-    //     .first()
-
-    //     if(exists){
-    //         return response.redirect().back().with('error', 'Vous suivez déjà cette personne')
-    //     }
-
-    //     await Following.create({ 'follower_id': id_user, 'following_id': id_follower })
-    //     return response.redirect().back.with('success', 'Utilisateur suiviavec succès')
-    // }
-
+        session.flash('notification', {
+            type: 'success',
+            message: 'Vous venez de suivre cette personne avec succes'
+        })       
+        return response.redirect().toPath('/')
+    }
 }
-
-
 

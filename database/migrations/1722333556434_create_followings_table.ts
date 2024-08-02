@@ -11,7 +11,8 @@ export default class extends BaseSchema {
 
       table.integer('id_user').unsigned().references('id').inTable('users').onDelete('CASCADE')
       table.integer('id_follower').unsigned().references('id').inTable('users').onDelete('CASCADE')
-      table.boolean('isFollowing')
+      table.boolean('is_following')
+      table.string('total')
       table.timestamp('created_at')
       table.timestamp('updated_at')
     })

@@ -15,6 +15,6 @@ export default class RegistersController {
 
       await auth.use('web').login(user)
 
-      return response.redirect().toPath('/users')
+      return response.redirect().toPath('/')
   } 
 }

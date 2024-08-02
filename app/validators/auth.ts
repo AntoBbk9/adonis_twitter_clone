@@ -1,8 +1,8 @@
-import vine, { SimpleMessagesProvider } from '@vinejs/vine'
+import vine from '@vinejs/vine'
 
 export const registerValidator = vine.compile(
     vine.object({
-        firstname: vine.string().minLength(4).maxLength(100).nullable(),
+        firstname: vine.string().minLength(4).maxLength(100),
         secondname: vine.string().minLength(4).maxLength(100),
         telephone: vine.string().maxLength(13),
         email: vine.string().email().normalizeEmail(),

@@ -12,7 +12,7 @@ export default class Following extends BaseModel {
   declare id_follower: number
 
   @column()
-  declare isFollowing: boolean
+  declare is_following: boolean
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
