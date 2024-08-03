@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     button.addEventListener('click', async () => {
       const userId = button.getAttribute('data-user-id');
       try {
-        await fetch('/follow', {
+        await fetch('/users', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

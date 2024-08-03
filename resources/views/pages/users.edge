@@ -11,11 +11,14 @@
       @each(user in users)
         <li>
           <span>{{ user.firstname }} {{user.secondname }}</span>
-          @if(user.is_following)
-            <button class="unfollow-btn" data-user-id="{{ user.id }}">Se Désabonner</button>
-          @else
-            <button class="follow-btn" data-user-id="{{ user.id }}">Suivre</button>
-          @endif
+          <form action="/users" method="POST">
+            {{ csrfField() }}
+            @if(user.is_following)
+              <button class="unfollow-btn" data-user-id="{{ user.id }}" >Se Désabonner</button>
+            @else
+              <button class="follow-btn" data-user-id="{{ user.id }}" >Suivre</button>
+            @endif
+          </form>
         </li>
       @endeach
     </ul>

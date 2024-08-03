@@ -1,7 +1,7 @@
 import { registerValidator } from '#validators/auth'
 import type { HttpContext } from '@adonisjs/core/http'
 import User from '#models/user'
-import { log } from 'console';
+import { log } from 'console'
 
 export default class RegistersController {
   async showregister({ view }: HttpContext) {

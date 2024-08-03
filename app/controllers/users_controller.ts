@@ -35,14 +35,18 @@ export default class UsersController {
     const currentUser = auth.user
 
     if (!currentUser) {
-      return response.status(401).send({ error: 'Utilisateur non authentifié' })
+      return response.status(401).send({ error: 'Utilisateur non authentifié' })      
     }
 
-    await Follower.create({
-      id_user: userIdToFollow,
-      id_follower: currentUser.id,
-      is_following: true,
-    })
+    const follower = await new Follower()
+      follower.id_user = currentUser.id,
+      follower.id_follower = userIdToFollow,
+      follower.is_following = true,
+
+      follower.save()
+      response.send(true)
+  
+    
 
     return response.status(200).send({ message: 'Suivi ajouté avec succès' })
   }
