@@ -11,7 +11,7 @@
       @each(user in users)
         <li>
           <span>{{ user.firstname }} {{user.secondname }}</span>
-          <form action="/users" method="POST">
+          <form action="/users">
             {{ csrfField() }}
             @if(user.is_following)
               <button class="unfollow-btn" data-user-id="{{ user.id }}" >Se Désabonner</button>

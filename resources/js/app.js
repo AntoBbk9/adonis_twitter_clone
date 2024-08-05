@@ -5,51 +5,52 @@ const btnSubmitTweet = document.querySelector('.button');
 document.addEventListener('DOMContentLoaded', () => {
   const followButtons = document.querySelectorAll('.follow-btn');
   const unfollowButtons = document.querySelectorAll('.unfollow-btn');
+  })
 
-  followButtons.forEach(button => {
-    button.addEventListener('click', async () => {
-      const userId = button.getAttribute('data-user-id');
-      try {
-        await fetch('/users', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'X-Requested-With': 'XMLHttpRequest',
-            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-          },
-          body: JSON.stringify({ userId }),
-        });
-        button.textContent = 'Se Désabonner';
-        button.classList.remove('follow-btn');
-        button.classList.add('unfollow-btn');
-      } catch (error) {
-        console.error('Erreur de suivi:', error);
-      }
-    });
-  });
+//   followButtons.forEach(button => {
+//     // button.addEventListener('click', async () => {
+//       const userId = button.getAttribute('data-user-id');
+//       try {
+//         await fetch('/users', {
+//           method: 'POST',
+//           headers: {
+//             'Content-Type': 'application/json',
+//             'X-Requested-With': 'XMLHttpRequest',
+//             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+//           },
+//           body: JSON.stringify({ userId }),
+//         });
+//         button.textContent = 'Se Désabonner';
+//         button.classList.remove('follow-btn');
+//         button.classList.add('unfollow-btn');
+//       } catch (error) {
+//         console.error('Erreur de suivi:', error);
+//       }
+//     });
+//   });
 
-  unfollowButtons.forEach(button => {
-    button.addEventListener('click', async () => {
-      const userId = button.getAttribute('data-user-id');
-      try {
-        await fetch('/unfollow', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'X-Requested-With': 'XMLHttpRequest',
-            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-          },
-          body: JSON.stringify({ userId }),
-        });
-        button.textContent = 'Suivre';
-        button.classList.remove('unfollow-btn');
-        button.classList.add('follow-btn');
-      } catch (error) {
-        console.error('Erreur de désabonnement:', error);
-      }
-    });
-  });
-});
+//   unfollowButtons.forEach(button => {
+//     button.addEventListener('click', async () => {
+//       const userId = button.getAttribute('data-user-id');
+//       try {
+//         await fetch('/unfollow', {
+//           method: 'POST',
+//           headers: {
+//             'Content-Type': 'application/json',
+//             'X-Requested-With': 'XMLHttpRequest',
+//             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+//           },
+//           body: JSON.stringify({ userId }),
+//         });
+//         button.textContent = 'Suivre';
+//         button.classList.remove('unfollow-btn');
+//         button.classList.add('follow-btn');
+//       } catch (error) {
+//         console.error('Erreur de désabonnement:', error);
+//       }
+//     });
+//   });
+// });
 
 const addClass = (element, className) => {
     element.classList.add(className);

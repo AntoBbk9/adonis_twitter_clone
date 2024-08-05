@@ -12,18 +12,13 @@ export default class UsersController {
 
   public async index({ view, auth }: HttpContext) {
     try {
-      const authUser = await auth.authenticate()
-      const users = await User.query().whereNot('id', authUser.id)
+      const filteredUsers = await User.all();
+      const authUserId = auth.user?.id; 
+      const usersArray = filteredUsers.map(user => user.toJSON());
 
-      const followingIds = await Follower.query()
-        .where('id_follower', authUser.id)
+      const users = usersArray.filter(user => user.id !== authUserId);   
 
-      const usersWithFollowingStatus = users.map(user => ({
-        ...user.toJSON(),
-        is_following: followingIds.includes(user.id),
-      }))
-
-      return view.render('pages/users', { users: usersWithFollowingStatus })
+      return view.render('pages/users', { users })
     } catch (error) {
       console.error('Erreur lors de la récupération des utilisateurs:', error)
       return view.render('pages/users', { users: [] })
@@ -39,14 +34,16 @@ export default class UsersController {
     }
 
     const follower = await new Follower()
+    
       follower.id_user = currentUser.id,
       follower.id_follower = userIdToFollow,
       follower.is_following = true,
+      console.log(follower.id_follower);
+
 
       follower.save()
       response.send(true)
   
-    
 
     return response.status(200).send({ message: 'Suivi ajouté avec succès' })
   }

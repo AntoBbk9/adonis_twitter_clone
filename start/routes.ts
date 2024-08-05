@@ -97,11 +97,17 @@ const tweets = [
         
     router.get('/home', async ({ view }) => {
 
-      return view.render('pages/home', { tweets })
+      return view.render('pages/home')
     }).as('home').use(middleware.auth())
+  router.group(()=> {
+    router.post('/tweets', [TweetsController, 'create']).as('tweet.create')
+    router.get('/tweets', [TweetsController, 'index']).as('tweet.index')
+  }).as('api')
+
 
     router.get('/users', [UsersController, 'index']).use(middleware.auth())
-    router.post('/users', [UsersController, 'follow']).use(middleware.auth())
+    router.get('/users:id', [UsersController, 'follow']).use(middleware.auth())
+
     
     router.group(() => {
       router.get('/register', [RegistersController, 'showregister']).as('register.show')
